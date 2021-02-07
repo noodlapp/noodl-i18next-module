@@ -12,12 +12,6 @@ const i18nextNode = Noodl.defineNode ({
 		LanguageChanged:"signal",
 		CurrentLanguage:"string"
 	},
-	changed:{
-		Language:function (langValue) {
-			var language = langValue;
-			
-		}
-	},
 	signals: {
 		ChangeLanguage: function () {
 			geti18next().then ( () => {
@@ -36,7 +30,6 @@ const i18nextNode = Noodl.defineNode ({
 			this.setOutputs ({CurrentLanguage:i18next.language});
 			this.sendSignalOnOutput ("LanguageChanged");
 		} );
-		//this.clearWarnings();
 	}
 	
 });
@@ -45,7 +38,11 @@ const LanguageBundleNode = Noodl.defineNode({
 	category:'i18next-noodl',
 	name:'Language Bundle',
 	inputs:{
-		Bundle:{type:{name:'string', codeeditor:"JSON"}/*, set:function (value) {this._internal.json = value;}*/},
+		Bundle:{type:{name:'string', codeeditor:"JSON"}},
+		ExternalFilePath: {
+			type: {name: 'source', allowEditOnly: true},
+			displayName: 'External Bundle Path',
+		},
 		//Bundle:'array',
 		Language:'string',
 		Namespace:'string',
@@ -59,17 +56,43 @@ const LanguageBundleNode = Noodl.defineNode({
 	changed:{
 		Bundle:function(jsonData) {
 
+			this.clearWarnings();
+
 			let obj = {};
 			if (jsonData !== undefined || jsonData == "") {
 				try {
 					obj= JSON.parse (jsonData);
 				}
 				catch (e) {
-					this.sendWarning ('i18next-warning',e);
+					this.sendWarning ('i18next-warning',e.message);
 					console.log ("Warning JSON is not correct in language bundle. ", jsonData);
 				}
 			}
 
+			this.loadBundle(obj);
+		},
+		ExternalFilePath(path) {
+			this.clearWarnings();
+			if(!path) return;
+
+			fetch(path)
+				.then(response => {
+					if(response.ok) {
+						return response.json();
+					}
+					throw new Error(response.status + " " + response.statusText);
+				})
+				.then(data => {
+					this.loadBundle(data);
+				})
+				.catch(e => {
+					console.log(e);
+					this.sendWarning('i18next-warning',e.message);
+				});
+		}
+	},
+	methods: {
+		loadBundle(obj) {
 			geti18next().then ( () => {
 
 				let namespace = this.inputs.Namespace;
@@ -84,8 +107,6 @@ const LanguageBundleNode = Noodl.defineNode({
 					i18next.addResourceBundle (language, namespace, obj, false, true);
 				}
 			});
-			
-	
 		}
 	},
 	signals: {

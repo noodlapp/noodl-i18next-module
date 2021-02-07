@@ -1,5 +1,5 @@
 {
-    "name": "new i18next test",
+    "name": "i18next test",
     "components": [
         {
             "name": "/My tests",
@@ -191,6 +191,12 @@
                         "fromProperty": "stateChanged",
                         "toId": "5c37f4b7-9818-f737-5ad9-947cfc811697",
                         "toProperty": "saveValue"
+                    },
+                    {
+                        "fromId": "ec2a5f23-434d-c7b4-a67d-2b607fcd2c69",
+                        "fromProperty": "Translation",
+                        "toId": "99c63625-611b-69f6-efb5-be3188f11879",
+                        "toProperty": "text"
                     }
                 ],
                 "roots": [
@@ -204,10 +210,20 @@
                         "dynamicports": [],
                         "children": [
                             {
+                                "id": "99c63625-611b-69f6-efb5-be3188f11879",
+                                "type": "Text",
+                                "x": 558.7131451002131,
+                                "y": 277.19540921152316,
+                                "parameters": {},
+                                "ports": [],
+                                "dynamicports": [],
+                                "children": []
+                            },
+                            {
                                 "id": "88a3c7e5-41b6-ecb9-57fc-729ae0de4be3",
                                 "type": "Text",
-                                "x": 20,
-                                "y": 46,
+                                "x": 522.4918143826591,
+                                "y": 298.36621626812985,
                                 "parameters": {},
                                 "ports": [],
                                 "dynamicports": [],
@@ -216,8 +232,8 @@
                             {
                                 "id": "03724763-906b-44a7-c4f5-738254948b32",
                                 "type": "Text",
-                                "x": 556.4369135557604,
-                                "y": 278.73066766940826,
+                                "x": 20,
+                                "y": 164,
                                 "parameters": {},
                                 "ports": [],
                                 "dynamicports": [],
@@ -366,8 +382,8 @@
                     {
                         "id": "b97320bc-922b-138b-5415-88e6126bbe14",
                         "type": "Translation",
-                        "x": 760.6325768137945,
-                        "y": 256.2085900306463,
+                        "x": 789.2004337957903,
+                        "y": 337.8310385506347,
                         "parameters": {
                             "Key": "gb"
                         },
@@ -379,7 +395,7 @@
                         "id": "45979412-2a9d-68c0-b278-daec717cf0a0",
                         "type": "i18next",
                         "x": 234.0066818352042,
-                        "y": -392.4676580670247,
+                        "y": -394.0062438516768,
                         "parameters": {
                             "Language": "en"
                         },
@@ -763,7 +779,9 @@
                         "parameters": {
                             "Language": "sv",
                             "Bundle2": "{\"lasse\":\"olle\"}",
-                            "Bundle": "{\"hw\":\"Hej Världen\",\n \"gb\":\"Hejdå\",\n \"hej\":\"Hej {{name}}\",\n \"items\":\"sak\",\n \"items_plural\":\"saker\",\n \"item1\": { \"text\":\"Detta är item 1\"},\n \"item2\": {\"text\":\"Och detta är item 2\"},\n \"ett\": {\n     \"text\":\"Detta är text 1\"\n     },\n \"två\": {\n    \"text\":\"Detta är text 2\"\n },\n \"tre\": {\n    \"text\":\"Detta är text 3\"\n }\n     \n }"
+                            "Bundle": "{\n    \"hw2\":\"Hej Världen 2\"\n}",
+                            "UseExternalFile": true,
+                            "ExternalFilePath": "bundle-se.json"
                         },
                         "ports": [],
                         "dynamicports": [],
@@ -1226,6 +1244,18 @@
                                 "index": 14
                             }
                         ],
+                        "children": []
+                    },
+                    {
+                        "id": "ec2a5f23-434d-c7b4-a67d-2b607fcd2c69",
+                        "type": "Translation",
+                        "x": 728.7599128501888,
+                        "y": 270.3935385015242,
+                        "parameters": {
+                            "Key": "hw2"
+                        },
+                        "ports": [],
+                        "dynamicports": [],
                         "children": []
                     }
                 ]
