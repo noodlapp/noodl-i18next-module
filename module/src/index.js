@@ -449,7 +449,11 @@ Noodl.defineModule({
 });
 
 async function i18nextSetup2 () {
-	//console.log (i18next);
+
+	i18next.on('initialized', () => {
+		initialized = true;
+	});
+
 	await i18next.use(LanguageDetector).init({
 			  /*lng: 'en',*/
 			  debug: false,
@@ -463,6 +467,4 @@ async function i18nextSetup2 () {
 			  	'default':['en']
 			  }
 			});
-	initialized = true;
-	//console.log ("init of i18next done");
 }
