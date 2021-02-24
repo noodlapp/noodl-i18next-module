@@ -14,7 +14,7 @@ function stripStartDirectories(targetPath, numDirs) {
 }
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/i18next-module.js',
     mode: 'production',
     devtool: 'source-map',
     output: {
