@@ -190,16 +190,14 @@ const TranslationNode = Noodl.defineNode({
 				if (this.isMyNamespace (ns) === true) {
 					//console.log ("something added in my namespace! my key is ", this.inputs.Key);
 
-					geti18next().then ( () => {
-						if (i18next.language == lng) {
-							this.scheduleTranslate ();
-						}
+					geti18next().then( () => {
+						this.scheduleTranslate();
 					});
 				}
 			};
 		this._internal.eventListenerLangChanged = (lng) => {
-				this.scheduleTranslate ();
-			};
+			this.scheduleTranslate ();
+		};
 
 		geti18next().then ( () => { 
 			i18next.store.on('added', this._internal.eventListenerAdded);
